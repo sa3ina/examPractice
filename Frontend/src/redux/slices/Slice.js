@@ -10,7 +10,12 @@ export const fetchUserData = createAsyncThunk(
 );
 export const counterSlice = createSlice({
   name: "posts",
-  initialState: { data: [], loading: false, error: null, basket: [] },
+  initialState: {
+    data: [],
+    loading: false,
+    error: null,
+    basket: JSON.parse(localStorage.getItem("basket")) || [],
+  },
   reducers: {
     addtoBasket: (state, action) => {
       const item = state.basket.find((elem) => elem.id == action.payload.id);
@@ -19,11 +24,12 @@ export const counterSlice = createSlice({
       } else {
         state.basket.push({ ...action.payload, quantity: 1 });
       }
+      localStorage.setItem("basket", JSON.stringify(state.basket));
     },
     increment: (state, action) => {
       const item = state.basket.find((elem) => elem.id == action.payload.id);
-
       item.quantity++;
+      localStorage.setItem("basket", JSON.stringify(state.basket));
     },
     decrement: (state, action) => {
       const item = state.basket.find((elem) => elem.id == action.payload.id);
@@ -32,6 +38,7 @@ export const counterSlice = createSlice({
       } else {
         item.quantity--;
       }
+      localStorage.setItem("basket", JSON.stringify(state.basket));
     },
   },
   extraReducers: (builder) => {
