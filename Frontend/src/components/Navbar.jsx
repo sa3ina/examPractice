@@ -45,8 +45,8 @@ function Navbar() {
       style={{
         backgroundColor: "white",
         color: "black",
-        boxShadow: "none",
       }}
+      className="cont"
     >
       <Container maxWidth="xl" position="static">
         <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -186,9 +186,12 @@ function Navbar() {
             }}
           >
             {/* {pages.map((page) => ( */}
-            <MenuItem onClick={handleCloseNavMenu}>
-              <Typography textAlign="center">Home</Typography>
-            </MenuItem>
+            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography textAlign="center">Home</Typography>
+              </MenuItem>
+            </Link>
+
             <Link
               to="/products"
               style={{ textDecoration: "none", color: "black" }}
@@ -214,6 +217,14 @@ function Navbar() {
               </MenuItem>
             </Link>
             <Link
+              to="/wishlist"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography textAlign="center"> Wishlist</Typography>
+              </MenuItem>
+            </Link>
+            <Link
               to="/special"
               style={{ textDecoration: "none", color: "black" }}
             >
@@ -233,6 +244,11 @@ function Navbar() {
             >
               <MenuItem onClick={handleCloseNavMenu}>
                 <Typography textAlign="center"> Contact</Typography>
+              </MenuItem>
+            </Link>
+            <Link to="/add" style={{ textDecoration: "none", color: "black" }}>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography textAlign="center"> Add</Typography>
               </MenuItem>
             </Link>
             {/* ))} */}

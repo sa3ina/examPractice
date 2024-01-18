@@ -1,7 +1,68 @@
 ::placeholder {
-  color: rgb(255, 255, 255);
+  color: rgb(112, 108, 108);
   opacity: 1;
 }
 .basket {
   font-size: 30px;
+}
+.heart {
+  background-color: transparent;
+  border: none;
+  color: #c1121f;
+  cursor: pointer;
+}
+.table {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  input {
+    width: 500px;
+    margin-bottom: 20px;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+  }
+}
+.button {
+  background-color: #c1121f;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+.button1 {
+  background-color: #297c26;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.button2 {
+  background-color: #5f9fd3;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+.blog {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.container {
+  max-width: 1200px;
+}
+.gridd {
+  img {
+    width: 70%;
+  }
 }

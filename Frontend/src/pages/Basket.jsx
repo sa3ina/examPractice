@@ -15,6 +15,7 @@ import CardMedia from "@mui/material/CardMedia";
 import { Link } from "react-router-dom";
 import { Container } from "@mui/material";
 import { increment } from "../redux/slices/Slice";
+import { removeFromBasket } from "../redux/slices/Slice";
 import { decrement } from "../redux/slices/Slice";
 const Basket = () => {
   const dispatch = useDispatch();
@@ -128,6 +129,18 @@ const Basket = () => {
                         onClick={() => dispatch(decrement(elem))}
                       >
                         decrement
+                      </button>
+                      <button
+                        style={{
+                          backgroundColor: "#d90429",
+                          color: "white",
+                          padding: "7px 1px",
+                          marginLeft: "12px",
+                          border: "none",
+                        }}
+                        onClick={() => dispatch(removeFromBasket(elem))}
+                      >
+                        remove
                       </button>
                     </div>
                   </CardContent>

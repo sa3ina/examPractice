@@ -9,9 +9,9 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import axios from "axios";
 import CardMedia from "@mui/material/CardMedia";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import StarIcon from "@mui/icons-material/Star";
 import Section from "./Section";
 import Section2 from "./Section2";
@@ -19,17 +19,27 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserData } from "../redux/slices/Slice";
 import { addtoBasket } from "../redux/slices/Slice";
+import { wishlistHandle } from "../redux/slices/Slice";
+import { Helmet } from "react-helmet";
+import Blog from "./Blog";
 const Home = () => {
   const dispatch = useDispatch();
-  const { data, loading, error, basket } = useSelector((state) => state.posts);
+  const { data, loading, error, basket, wishlist } = useSelector(
+    (state) => state.posts
+  );
   useEffect(() => {
     dispatch(fetchUserData());
-    console.log(data);
   }, [dispatch]);
-  console.log("basket", basket);
   return (
     <>
-      <Navbar />
+      <div className="application">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Home</title>
+          <link rel="canonical" href="http://mysite.com/example" />
+        </Helmet>
+        ...
+      </div>
       <Hero />
       <Container
         style={{
@@ -58,14 +68,12 @@ const Home = () => {
                   style={{ margin: "20px", boxShadow: "none" }}
                 >
                   {" "}
-                  <Link to={`/${elem.id}`}>
-                    <CardMedia
-                      component="img"
-                      width="100%"
-                      image={elem.imgSrc}
-                      alt="Paella dish"
-                    />
-                  </Link>
+                  <CardMedia
+                    component="img"
+                    width="100%"
+                    image={elem.imgSrc}
+                    alt="Paella dish"
+                  />
                   <CardContent style={{ textAlign: "center" }}>
                     <Typography
                       sx={{ fontSize: 14 }}
@@ -100,7 +108,17 @@ const Home = () => {
                           gap: "5px",
                         }}
                       >
-                        <FavoriteIcon style={{ color: "#F24442" }} /> <p>29</p>
+                        <button
+                          className="heart"
+                          onClick={() => dispatch(wishlistHandle(elem))}
+                        >
+                          {wishlist.find((wish) => wish.id == elem.id) ? (
+                            <FavoriteIcon style={{ color: "#F24442" }} />
+                          ) : (
+                            <FavoriteBorderIcon style={{ color: "#F24442" }} />
+                          )}
+                        </button>
+                        <p>29</p>
                       </div>
                     </div>{" "}
                     <Typography
@@ -126,16 +144,19 @@ const Home = () => {
                       >
                         CART
                       </button>
-                      <button
-                        style={{
-                          backgroundColor: "white",
-                          color: "black",
-                          padding: "7px 1px",
-                          border: "1px solid black",
-                        }}
-                      >
-                        VIEW
-                      </button>
+                      <Link to={`/${elem.id}`}>
+                        <button
+                          style={{
+                            backgroundColor: "white",
+                            color: "black",
+                            padding: "7px 1px",
+                            border: "1px solid black",
+                            cursor: "pointer",
+                          }}
+                        >
+                          VIEW
+                        </button>
+                      </Link>
                     </div>
                   </CardContent>
                 </Card>
@@ -324,6 +345,7 @@ const Home = () => {
           />
         </Card>
       </Container>
+      <Blog />
     </>
   );
 };

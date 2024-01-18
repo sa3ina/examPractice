@@ -11,4 +11,9 @@ const deleteOne = async (req, res) => {
   await Model.deleteOne({ id: req.params.id });
   res.status(204).send();
 };
-module.exports = { getall, getById, deleteOne };
+const postNew = async (req, res) => {
+  const newProd = await Model(req.body);
+  await newProd.save();
+  res.send(newProd);
+};
+module.exports = { getall, getById, deleteOne, postNew };

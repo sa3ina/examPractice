@@ -7,6 +7,8 @@ import Special from "../pages/Special";
 import Blog from "../pages/Blog";
 import Contact from "../pages/Contact";
 import Basket from "../pages/Basket";
+import Add from "../pages/Add";
+import Wishlist from "../pages/Wishlist";
 export const routes = [
   {
     path: "/",
@@ -43,6 +45,14 @@ export const routes = [
       {
         path: "/basket",
         element: <Basket />,
+      },
+      {
+        path: "/add",
+        element: <Add />,
+      },
+      {
+        path: "/wishlist",
+        element: <Wishlist />,
       },
     ],
   },
