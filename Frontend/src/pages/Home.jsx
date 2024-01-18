@@ -16,22 +16,17 @@ import StarIcon from "@mui/icons-material/Star";
 import Section from "./Section";
 import Section2 from "./Section2";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserData } from "../redux/slices/Slice";
+import { addtoBasket } from "../redux/slices/Slice";
 const Home = () => {
-  const [data, setData] = useState([]);
-
+  const dispatch = useDispatch();
+  const { data, loading, error, basket } = useSelector((state) => state.posts);
   useEffect(() => {
-    axios("http://localhost:3000/products").then((res) => {
-      console.log(res.data);
-      setData(res.data);
-    });
-  }, []);
-
-  const bull = (
-    <Box
-      component="span"
-      sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-    ></Box>
-  );
+    dispatch(fetchUserData());
+    console.log(data);
+  }, [dispatch]);
+  console.log("basket", basket);
   return (
     <>
       <Navbar />
@@ -125,7 +120,9 @@ const Home = () => {
                           padding: "7px 17px",
                           border: "1px solid black",
                           marginRight: "10px",
+                          cursor: "pointer",
                         }}
+                        onClick={() => dispatch(addtoBasket(elem))}
                       >
                         CART
                       </button>

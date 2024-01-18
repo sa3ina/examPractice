@@ -16,6 +16,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+
 // const pages = ["Products", "Pricing", "Blog"];
 import { Link } from "react-router-dom";
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -159,9 +160,12 @@ function Navbar() {
                   <Typography textAlign="center">Products</Typography>
                 </MenuItem>
               </Link>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">About Us</Typography>
-              </MenuItem>
+              <Link to="/about">
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">About Us</Typography>
+                </MenuItem>
+              </Link>
+
               <MenuItem onClick={handleCloseNavMenu}>
                 <Typography textAlign="center"> Special</Typography>
               </MenuItem>
@@ -193,18 +197,44 @@ function Navbar() {
                 <Typography textAlign="center">Products</Typography>
               </MenuItem>
             </Link>
-            <MenuItem onClick={handleCloseNavMenu}>
-              <Typography textAlign="center">About Us</Typography>
-            </MenuItem>
-            <MenuItem onClick={handleCloseNavMenu}>
-              <Typography textAlign="center"> Special</Typography>
-            </MenuItem>
-            <MenuItem onClick={handleCloseNavMenu}>
-              <Typography textAlign="center"> Blog</Typography>
-            </MenuItem>
-            <MenuItem onClick={handleCloseNavMenu}>
-              <Typography textAlign="center"> Contact</Typography>
-            </MenuItem>
+            <Link
+              to="/about"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography textAlign="center">About Us</Typography>
+              </MenuItem>
+            </Link>
+            <Link
+              to="/basket"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography textAlign="center"> Basket</Typography>
+              </MenuItem>
+            </Link>
+            <Link
+              to="/special"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography textAlign="center"> Special</Typography>
+              </MenuItem>
+            </Link>
+
+            <Link to="/blog" style={{ textDecoration: "none", color: "black" }}>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography textAlign="center"> Blog</Typography>
+              </MenuItem>
+            </Link>
+            <Link
+              to="/contact"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography textAlign="center"> Contact</Typography>
+              </MenuItem>
+            </Link>
             {/* ))} */}
           </Box>
 
